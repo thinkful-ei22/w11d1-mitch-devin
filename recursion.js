@@ -27,8 +27,11 @@ let res;
 // res = nthNumber(9);
 // console.log(res);
 
-res = stringSplitter('Mr. Stark I don\'t feel so good', '.');
-console.log(res);
+//res = stringSplitter('Mr. Stark I don\'t feel so good', '.');
+//console.log(res);
+
+//res = fibonacci(7);
+//console.log(res);
 
 //1. Counting sheep
 
@@ -108,7 +111,13 @@ function stringSplitter(string, separator) {
 
 
 //8. Fibonacci
+function fibonacci(n) {
+  if(n < 2) {
+    return n;
+  }
 
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
 
 
 
