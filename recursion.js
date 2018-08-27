@@ -3,7 +3,14 @@
  * Authors: Devin Hero, Mitch Gianoni
  */
 
+function logProblem(name){
+  console.log('========================');
+  console.log('Begin', name);
+}
+
+
 //1. Counting sheep
+logProblem('Counting Sheep');
 
 
 
@@ -11,7 +18,9 @@
 
 
 
+
 //3. Reverse String
+
 
 
 
@@ -19,7 +28,9 @@
 
 
 
+
 //5. String Splitter
+
 
 
 
@@ -27,7 +38,9 @@
 
 
 
+
 //7. Factorial
+
 
 
 
@@ -35,11 +48,14 @@
 
 
 
+
 //9. Anagrams
 
 
 
+
 //10. Animal Hierarchy
+
 
 
 
