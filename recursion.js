@@ -27,6 +27,9 @@ let res;
 // res = nthNumber(9);
 // console.log(res);
 
+res = stringSplitter('Mr. Stark I don\'t feel so good', '.');
+console.log(res);
+
 //1. Counting sheep
 
 function sheep(num){
@@ -77,17 +80,19 @@ function nthNumber(n){
 
 //5. String Splitter
 function stringSplitter(string, separator) {
-  if(string.length === 0 ) {
+  if(string.length === 1 ) {
     return '';
   }
-
-  if (string[0] !== separator) {
-    return string[0] + string.slice(1);
-  } else {
-    
+  if(string.length === 2) {
+    return 'weh';
   }
 
-  return stringSplitter();
+  if(string[1] === separator){
+    return [string[0], ...stringSplitter(string.slice(2))];
+  } else{
+    return [string[0] + stringSplitter(string.slice(1))];
+  }
+  
 }
 
 
