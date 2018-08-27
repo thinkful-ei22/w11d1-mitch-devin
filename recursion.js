@@ -11,18 +11,21 @@ function logProblem(name){
 // //Initial calls
 let res;
 
-logProblem('Counting Sheep');
-sheep(5);
+// logProblem('Counting Sheep');
+// sheep(5);
 
-logProblem('Array Doubles');
-const array = [2, 4, 5];
-res = arrayDouble(array);
-console.log(res);
+// logProblem('Array Doubles');
+// const array = [2, 4, 5];
+// res = arrayDouble(array);
+// console.log(res);
 
-logProblem('Reverse String');
-res = reverseString('hello squirrels');
-console.log(res);
+// logProblem('Reverse String');
+// res = reverseString('hello squirrels');
+// console.log(res);
 
+// logProblem('nth Number');
+// res = nthNumber(9);
+// console.log(res);
 
 //1. Counting sheep
 
@@ -62,12 +65,30 @@ function reverseString(string){
 
 
 //4. nth Triangle Number
+function nthNumber(n){
+  if(n === 0){
+    return 0;
+  }
 
+  return nthNumber(n - 1) + n;
+}
 
 
 
 //5. String Splitter
+function stringSplitter(string, separator) {
+  if(string.length === 0 ) {
+    return '';
+  }
 
+  if (string[0] !== separator) {
+    return string[0] + string.slice(1);
+  } else {
+    
+  }
+
+  return stringSplitter();
+}
 
 
 
