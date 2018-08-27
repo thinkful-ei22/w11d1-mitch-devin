@@ -8,6 +8,80 @@ function logProblem(name){
   console.log('Begin', name);
 }
 
+const animalHierarchy = [
+  {id: 'Animals', parent: null},
+  {id: 'Mammals', parent: 'Animals'},
+  {id: 'Dogs', parent:'Mammals' },
+  {id: 'Cats', parent:'Mammals' },
+  {id: 'Golden Retriever', parent: 'Dogs'},
+  {id: 'Husky', parent:'Dogs' },
+  {id: 'Bengal', parent:'Cats' }
+];
+
+let organization = {
+	"Zuckerberg": {		
+		"Schroepfer": {
+			"Bosworth": {
+				"Steve":{},
+				"Kyle":{},
+				"Andra":{}
+			},
+			"Zhao": {
+				"Richie":{},
+				"Sofia":{},
+				"Jen":{}
+			},
+			"Badros": {
+				"John":{},
+				"Mike":{},
+				"Pat":{}
+			},
+			"Parikh": {
+				"Zach":{},
+				"Ryan":{},
+				"Tes":{}
+			}
+		},
+		"Schrage": {
+			"VanDyck": {
+				"Sabrina":{},
+				"Michelle":{},
+				"Josh":{}
+			},
+			"Swain": {
+				"Blanch":{},
+				"Tom":{},
+				"Joe":{}
+			},
+			"Frankovsky": {
+				"Jasee":{},
+				"Brian":{},
+				"Margaret":{}
+			}
+		},
+		"Sandberg": {
+			"Goler": {
+				"Eddie":{},
+				"Julie":{},
+				"Annie":{}
+			},
+			"Hernandez": {
+				"Rowi":{},
+				"Inga":{},
+				"Morgan":{}
+			},
+			"Moissinac": {
+				"Amy":{},
+				"Chuck":{},
+				"Vinni":{}
+			},
+			"Kelley": {
+				"Eric":{},
+				"Ana":{},
+				"Wes":{}
+			}
+}}};
+
 // //Initial calls
 let res;
 
@@ -45,16 +119,15 @@ let res;
 
 logProblem('Anagrams');
 res = anagrams('bats');
-console.log('done');
 console.log(res);
 
 
-logProblem('Animal Hierarchy');
-console.log(traverse(animalHierarchy, null));
+// logProblem('Animal Hierarchy');
+// console.log(traverse(animalHierarchy, null));
 
 logProblem('Organizational Chart');
-// res = orgChart();
-// console.log(res);
+res = orgChart(organization);
+console.log(res);
 
 //1. Counting sheep
 
@@ -101,8 +174,6 @@ function nthNumber(n){
 
   return nthNumber(n - 1) + n;
 }
-
-
 
 //5. String Splitter
 function stringSplitter(string, separator) {
@@ -154,29 +225,19 @@ function anagrams(str){
   
   if(str.length === 0)
     return [''];
-
-  console.log('String: ', str);
   
-  return str.split('')
+  return str
+    .split('')
     .map(letter =>{
       const idx = str.indexOf(letter);
       const tempArr = [...str];
       tempArr.splice(idx, 1);
-      // console.log(letter, tempArr);
 
       return [letter].concat(anagrams(tempArr.join('')));
     });
 }
 
-const animalHierarchy = [
-  {id: 'Animals', parent: null},
-  {id: 'Mammals', parent: 'Animals'},
-  {id: 'Dogs', parent:'Mammals' },
-  {id: 'Cats', parent:'Mammals' },
-  {id: 'Golden Retriever', parent: 'Dogs'},
-  {id: 'Husky', parent:'Dogs' },
-  {id: 'Bengal', parent:'Cats' }
-];
+
 
 // ==============================
 function traverse(animalHierarchy, parent) {
@@ -189,6 +250,18 @@ function traverse(animalHierarchy, parent) {
 
 //11. Organizational Chart
 
-const facebookStaff = [
-  {}
-];
+function orgChart(org, depth = 0){
+  const spaceBlock = '    ';
+  let output = '';
+  const keys = Object.keys(org);
+  
+  keys.forEach(key =>{
+    for(let i = 0; i < depth; i++)
+      output += spaceBlock;
+    output += key;
+    console.log(output);
+    output = '';
+    orgChart(org[key], depth+1);
+  });
+}
+
