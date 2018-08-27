@@ -27,11 +27,34 @@ let res;
 // res = nthNumber(9);
 // console.log(res);
 
-//res = stringSplitter('Mr. Stark I don\'t feel so good', '.');
-//console.log(res);
+// logProblem('String Splitter');
+// res = stringSplitter('Mr. Stark I don\'t feel so good', ' ');
+// console.log(res);
 
+// logProblem('Binary Representation');
+// res = binaryRep(26);
+// console.log(res);
+
+// logProblem('Factorial');
+// res = factorial(5);
+// console.log(res);
+
+// logProblem('Fibonacci');
 //res = fibonacci(7);
 //console.log(res);
+
+logProblem('Anagrams');
+res = anagrams('bats');
+console.log('done');
+console.log(res);
+
+
+logProblem('Animal Hierarchy');
+console.log(traverse(animalHierarchy, null));
+
+logProblem('Organizational Chart');
+// res = orgChart();
+// console.log(res);
 
 //1. Counting sheep
 
@@ -83,32 +106,39 @@ function nthNumber(n){
 
 //5. String Splitter
 function stringSplitter(string, separator) {
-  if(string.length === 1 ) {
-    return '';
-  }
-  if(string.length === 2) {
-    return 'weh';
+  const idx = string.indexOf(separator);
+
+  if(idx === -1){
+    return [string];
   }
 
-  if(string[1] === separator){
-    return [string[0], ...stringSplitter(string.slice(2))];
-  } else{
-    return [string[0] + stringSplitter(string.slice(1))];
-  }
-  
+  return [string.slice(0, idx)].concat(stringSplitter(string.slice(idx + separator.length), separator));
 }
 
-
-
 //6. Binary Representation
+function binaryRep(num){
+  if(num === 1){
+    return '1';
+  }
+  if(num === 0){
+    return '0';
+  }
 
-
-
+  if(num % 2 === 1){
+    return binaryRep(Math.floor(num/2)) + '1';
+  }else{
+    return binaryRep(Math.floor(num/2)) + '0';
+  }
+}
 
 //7. Factorial
+function factorial(num){
+  if(num === 1){
+    return 1;
+  }
 
-
-
+  return num * factorial(num-1);
+}
 
 //8. Fibonacci
 function fibonacci(n) {
@@ -119,18 +149,46 @@ function fibonacci(n) {
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-
-
 //9. Anagrams
+function anagrams(str){
+  
+  if(str.length === 0)
+    return [''];
 
+  console.log('String: ', str);
+  
+  return str.split('')
+    .map(letter =>{
+      const idx = str.indexOf(letter);
+      const tempArr = [...str];
+      tempArr.splice(idx, 1);
+      // console.log(letter, tempArr);
 
+      return [letter].concat(anagrams(tempArr.join('')));
+    });
+}
 
+const animalHierarchy = [
+  {id: 'Animals', parent: null},
+  {id: 'Mammals', parent: 'Animals'},
+  {id: 'Dogs', parent:'Mammals' },
+  {id: 'Cats', parent:'Mammals' },
+  {id: 'Golden Retriever', parent: 'Dogs'},
+  {id: 'Husky', parent:'Dogs' },
+  {id: 'Bengal', parent:'Cats' }
+];
 
-//10. Animal Hierarchy
-
-
+// ==============================
+function traverse(animalHierarchy, parent) {
+  let node = {};
+  animalHierarchy.filter(item => item.parent === parent)
+                 .forEach(item => node[item.id] = traverse(animalHierarchy, item.id));
+  return node;  
+}
 
 
 //11. Organizational Chart
 
-
+const facebookStaff = [
+  {}
+];
